@@ -8,19 +8,12 @@ import sys
 from functools import partial
 
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import (
-    QApplication,
-    QGridLayout,
-    QLineEdit,
-    QMainWindow,
-    QPushButton,
-    QVBoxLayout,
-    QWidget,
-)
+from PyQt6.QtWidgets import *
+from PyQt6.QtGui import *
 
 ERROR_MSG = "MATH ERROR"
-WINDOW_SIZE = 235
-DISPLAY_HEIGHT = 35
+WINDOW_SIZE = 300
+DISPLAY_HEIGHT = 50
 BUTTON_SIZE = 40
 
 # class Window inherits from QMainWindow
@@ -63,6 +56,7 @@ class PyCalcWindow(QMainWindow):
             for col, key in enumerate(keys):
                 self.buttonMap[key] = QPushButton(key)
                 self.buttonMap[key].setFixedSize(BUTTON_SIZE, BUTTON_SIZE)
+                self.buttonMap[key].setFont(QFont('Helvetica [Cronyx]', 12))
                 buttonsLayout.addWidget(self.buttonMap[key], row, col)
         
         self.generalLayout.addLayout(buttonsLayout)
@@ -75,6 +69,8 @@ class PyCalcWindow(QMainWindow):
 
     def displayText(self):
             """Get the display's text."""
+            font = QFont('Consolas', 12)
+            self.display.setFont(font)
             return self.display.text()
 
     def clearDisplay(self):
